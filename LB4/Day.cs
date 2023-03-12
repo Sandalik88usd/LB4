@@ -1,26 +1,23 @@
 ﻿namespace LB4;
 public class Day
 {
-    private int _day { get; }
+    private readonly int _day;
 
     public Day(int day)
     {
-        if (day < 1 || day > 31)
-            Console.WriteLine("Днів повинно бути більше 0 або менше 32.");
-        else
-            _day = day;
+        _day = day;
     }
-
-    public int FindDayOfWeek(int year, int month)
+    public readonly List<string> DaysOfWeek = new List<string>()
     {
-        DateTime date = new DateTime(year, month, _day);
-        if (date.DayOfWeek == 0)
-            return 7;
-        else
-            return (int)date.DayOfWeek;
-    }
-
-    public int GetDayOfWeek(int year, int month)
+        "Понеділок",
+        "Вівторок",
+        "Середа",
+        "Четвер",
+        "Пятниця",
+        "Субота",
+        "Неділя"
+    };
+    public void FindDayOfWeek(int year, int month)
     {
         if (month < 3)
         {
@@ -39,7 +36,46 @@ public class Day
             dayOfWeek += 7;
         }
 
-        return dayOfWeek;
+        Console.WriteLine("Поточний день неділі: " + DaysOfWeek[dayOfWeek-1]);
+        
+    }
+    public void CountOfDays(Year firstYear, Year secondYear)
+    {
+        int years = firstYear.ReturnValue("year") - secondYear.ReturnValue("year");
+        int months = firstYear.ReturnValue("month") - secondYear.ReturnValue("month");
+        int days = firstYear.ReturnValue("day") - secondYear.ReturnValue("day");
+        int countDaysinMonth = 0;
+        int countDaysinYear = 0;
+        for (int i = 0; i < years; i++)
+        {
+            if (i % 4 == 0 || i % 100 == 0 && i % 400 == 0)
+            {
+                countDaysinYear += 366;
+                if (months >= 2)
+                    countDaysinMonth += 29;
+            }
+            else
+            {
+                countDaysinYear += 365;
+                if (months >= 2)
+                    countDaysinMonth += 28;
+            }
+        }
+
+        for (int i = 0; i < Month.MonthesWhith31Days.Length; i++)
+        {
+            if (i == Month.MonthesWhith31Days[i])
+                countDaysinMonth += 31;
+        }
+
+        for (int i = 0; i < Month.MonthesWhith30Days.Length; i++)
+        {
+            if (i == Month.MonthesWhith30Days[i])
+                countDaysinMonth += 30;
+        }
+
+        Console.WriteLine(
+            "Кількість днів у заданому часовому проміжку: " + (countDaysinMonth + countDaysinMonth + days));
     }
 
     public int ReturnValue()
