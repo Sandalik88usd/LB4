@@ -9,6 +9,7 @@ public class Month
     public Month(int month)
     {
         _month = month;
+        
     }
 
     public void CountOfMonths(Year firstYear, Year secondYear)
@@ -16,39 +17,47 @@ public class Month
         int years = firstYear.ReturnValue("year") - secondYear.ReturnValue("year");
         int months = firstYear.ReturnValue("month") - secondYear.ReturnValue("month");
         int days = firstYear.ReturnValue("day") - secondYear.ReturnValue("day");
-        int countMonthsinYear = 0;
-        int countMonthsByDays = 0;
-        for (int i = 0; i < years; i++)
+        if (years < 0 || months < 0 || days < 0)
         {
-            if (i % 4 == 0 || i % 100 == 0 && i % 400 == 0)
+            Console.WriteLine("Різниця між датами повинна бyти додатньою.");
+        }
+        else
+        {
+            int countMonthsinYear = 0;
+            int countMonthsByDays = 0;
+            for (int i = 0; i < years; i++)
             {
-                countMonthsinYear += 1;
-                if (months >= 2 && days == 29)
+                if (i % 4 == 0 || i % 100 == 0 && i % 400 == 0)
+                {
+                    countMonthsinYear += 1;
+                    if (months >= 2 && days == 29)
+                        countMonthsByDays += 1;
+                }
+                else
+                {
+                    countMonthsinYear += 1;
+                    if (months >= 2 && days == 28)
+                        countMonthsByDays += 1;
+                }
+            }
+
+            for (int i = 0; i < MonthesWhith31Days.Length; i++)
+            {
+                if (i == MonthesWhith31Days[i] && days <= 31)
                     countMonthsByDays += 1;
             }
-            else
+
+            for (int i = 0; i < MonthesWhith30Days.Length; i++)
             {
-                countMonthsinYear += 1;
-                if (months >= 2 && days == 28)
+                if (i == MonthesWhith30Days[i] && days <= 30)
                     countMonthsByDays += 1;
             }
-        }
 
-        for (int i = 0; i < MonthesWhith31Days.Length; i++)
-        {
-            if (i == MonthesWhith31Days[i] && days == 31)
-                countMonthsByDays += 1;
+            Console.WriteLine(
+                "Кількість місяців у заданому часовому проміжку: " + (countMonthsinYear + countMonthsByDays + months));
         }
-
-        for (int i = 0; i < MonthesWhith30Days.Length; i++)
-        {
-            if (i == MonthesWhith30Days[i] && days == 30)
-                countMonthsByDays += 1;
-        }
-
-        Console.WriteLine(
-            "Кількість місяців у заданому часовому проміжку: " + (countMonthsinYear + countMonthsByDays + months));
     }
+
     public int ReturnValue()
     {
         return _month;

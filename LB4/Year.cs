@@ -15,24 +15,30 @@ public class Year
         else
         {
             _year = year;
+            if (month > 12 || month < 1)
+            {
+                Console.WriteLine("Кількість місяців повинна бути більше 0 або менше 13.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
             _month = new Month(month);
             for (int i = 0; i < Month.MonthesWhith31Days.Length; i++)
             {
-                if (month == Month.MonthesWhith31Days[i] && day == 31)
+                if (month == Month.MonthesWhith31Days[i] && day <= 31)
                     _day = new Day(day);
                 break;
             }
 
             for (int i = 0; i < Month.MonthesWhith30Days.Length; i++)
             {
-                if (month == Month.MonthesWhith30Days[i] && day == 30)
+                if (month == Month.MonthesWhith30Days[i] && day <= 30)
                     _day = new Day(day);
                 break;
             }
 
-            if (day == 29 && year % 4 == 0 || year % 100 == 0 && year % 400 == 0)
+            if (day <= 29 && year % 4 == 0 || year % 100 == 0 && year % 400 == 0)
                 _day = new Day(day);
-            else if (day == 28)
+            else if (day <= 28)
                 _day = new Day(day);
             else
                 Console.WriteLine("Задана кількість днів не правильна");
