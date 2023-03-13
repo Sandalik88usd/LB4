@@ -92,4 +92,25 @@ public class Day
     {
         return _day;
     }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        Day day = new Day(23);
+        return day._day == _day;
+    }
+
+    public override int GetHashCode()
+    {
+        return _day.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return _day.ToString() + " - кількість днів.";
+    }
 }

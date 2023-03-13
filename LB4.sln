@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB4", "LB4\LB4.csproj", "{E803CF7F-1F4F-4CA3-B908-705F642D4DE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB1.2", "LB1.2\LB1.2.csproj", "{3BCF11F4-27D8-4EF5-94FE-D79E310487AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB4_2", "LB4_2\LB4_2.csproj", "{3BCF11F4-27D8-4EF5-94FE-D79E310487AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

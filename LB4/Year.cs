@@ -79,4 +79,25 @@ public class Year
             return 0;
         }
     }
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        Year year = new Year();
+        year.SetDate(2023,11,20);
+        return year._year == _year;
+    }
+
+    public override int GetHashCode()
+    {
+        return _year.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return _year.ToString() + " - рік.";
+    }
 }

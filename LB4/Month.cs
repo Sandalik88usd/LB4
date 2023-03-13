@@ -9,7 +9,6 @@ public class Month
     public Month(int month)
     {
         _month = month;
-        
     }
 
     public void CountOfMonths(Year firstYear, Year secondYear)
@@ -61,5 +60,26 @@ public class Month
     public int ReturnValue()
     {
         return _month;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        Month month = new Month(12);
+        return month._month == _month;
+    }
+
+    public override int GetHashCode()
+    {
+        return _month.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return _month.ToString() + " - кількість місяців.";
     }
 }
